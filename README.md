@@ -62,9 +62,10 @@ dansRoll();
 dansRoll();
 ```
 
-a. Where is closure used in this code? How can you tell?
+a. Where is closure used in this code? How can you tell? The closure is used on the function to generate a random number (dice roll). You can tell because it is the inner function that preserves an outer scope parameter (name).
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
+The name will always be the same, but the roll number could change each time.
+c. What is the lexical scope of `newRoll`? It is only able to be used inside the inner function in personalDice.
 
 ### Task 2c - Exit Ticket
 
