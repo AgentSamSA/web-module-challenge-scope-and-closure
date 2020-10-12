@@ -129,10 +129,24 @@ function getInningName(inning) {
       return `${inning}th`;
   }
 }
-
+//chose to write without the extra parameters, since we can just pass in the functions we have written.
 function scoreboard(innings) {
   const getHomeTeamScore = getInningScore();
   const getAwayTeamScore = getInningScore();
+  let homeTeamScore, awayTeamScore;
+  for (let i = 1; i <= innings; i++) {
+    awayTeamScore = getAwayTeamScore();
+    homeTeamScore = getHomeTeamScore();
+    console.log(getInningName(i) + " inning: " + "Away " + awayTeamScore + " - " + "Home " + homeTeamScore);
+  }
+  return "Final Score: " + "Away " + awayTeamScore + " - " + "Home " + homeTeamScore;
+}
+console.log(scoreboard(9));
+
+//function with requested parameters:
+/*function scoreboard(callback1, callback2, innings) {
+  const getHomeTeamScore = callback1(callback2);
+  const getAwayTeamScore = callback1(callback2);
   let homeTeamScore, awayTeamScore;
   for (let i = 1; i <= innings; i++) {
     awayTeamScore = getAwayTeamScore();
@@ -141,4 +155,4 @@ function scoreboard(innings) {
   }
   return "Final Score: " + awayTeamScore + " - " + homeTeamScore;
 }
-console.log(scoreboard(9));
+console.log(scoreboard(getInningScore, inning, 9));*/
