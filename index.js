@@ -27,18 +27,19 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *    counter1 is a function that returns a nested function that increments count, while counter2 is a function that increments count.
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *    counter1 uses a closure, because it nests a function inside of itself that is returned in order to do a task.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *    counter1 may be preferable in situations where you want to increment multiple different variables by calling the counterMaker function multiple times,
+ *    where counter2 is preferable in situation where you are just increment a single variable (count).
 */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
-   return count++;
+    return count++;
   }
 }
 
@@ -56,10 +57,8 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning() {
+  return Math.floor(Math.random() * 3);
 }
 
 /* Task 3: finalScore()
@@ -74,13 +73,22 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(callback, innings) {
+  let team1 = 0, team2 = 0;
+  for (let i = 1; i <= innings; i++) {
+    team1 += callback();
+    team2 += callback();
+    //console.log(`${i} inning(s) have been played, the score is ${team1} to ${team2}`);
+  }
+  const gameScore = {
+    "Home": team1,
+    "Away": team2,
+  };
+  return gameScore;
 }
+console.log(finalScore(inning, 6));
 
 /* Task 4: 
 
