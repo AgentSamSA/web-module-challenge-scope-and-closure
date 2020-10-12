@@ -131,12 +131,14 @@ function getInningName(inning) {
 }
 
 function scoreboard(innings) {
-  const getHomeTeamScore = getInningScore(inning), getAwayTeamScore = getInningScore(inning);
+  const getHomeTeamScore = getInningScore();
+  const getAwayTeamScore = getInningScore();
   let homeTeamScore, awayTeamScore;
   for (let i = 1; i <= innings; i++) {
-    console.log(getInningName(i) + " inning: " + getAwayTeamScore() + " - " + getHomeTeamScore());
-    homeTeamScore = 
+    awayTeamScore = getAwayTeamScore();
+    homeTeamScore = getHomeTeamScore();
+    console.log(getInningName(i) + " inning: " + awayTeamScore + " - " + homeTeamScore);
   }
-  return "Final Score: " + homeTeamScore + " - " + awayTeamScore;
+  return "Final Score: " + awayTeamScore + " - " + homeTeamScore;
 }
 console.log(scoreboard(9));
