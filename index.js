@@ -76,19 +76,19 @@ finalScore(inning, 9) might return:
 */
 
 function finalScore(callback, innings) {
-  let team1 = 0, team2 = 0;
+  let homeTeamScore = 0, awayTeamScore = 0;
   for (let i = 1; i <= innings; i++) {
-    team1 += callback();
-    team2 += callback();
-    //console.log(`${i} inning(s) have been played, the score is ${team1} to ${team2}`);
+    homeTeamScore += callback();
+    awayTeamScore += callback();
+    //console.log(`${i} inning(s) have been played, the score is ${homeTeamScore} to ${awayTeamScore}`);
   }
   const gameScore = {
-    "Home": team1,
-    "Away": team2,
+    "Home": homeTeamScore,
+    "Away": awayTeamScore,
   };
   return gameScore;
 }
-console.log(finalScore(inning, 6));
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -110,9 +110,24 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function getInningScore(callback) {
+  return callback();
 }
 
-
+function scoreboard(callback1, callback2, innings) {
+  let homeTeamScore = 0, awayTeamScore = 0;
+  for (let i = 1; i <= innings; i++) {
+    homeTeamScore += callback1(callback2), awayTeamScore += callback1(callback2);
+    if (i === 1) {
+      console.log(`${i}st inning: ${awayTeamScore} - ${homeTeamScore}`);
+    } else if (i === 2) {
+      console.log(`${i}nd inning: ${awayTeamScore} - ${homeTeamScore}`);
+    } else if (i === 3) {
+      console.log(`${i}rd inning: ${awayTeamScore} - ${homeTeamScore}`);
+    } else {
+      console.log(`${i}th inning: ${awayTeamScore}- ${homeTeamScore}`);
+    }
+  }
+  return `Final Score: ${awayTeamScore} - ${homeTeamScore}`;
+}
+console.log(scoreboard(getInningScore, inning, 9));
